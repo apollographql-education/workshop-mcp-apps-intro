@@ -22,7 +22,8 @@ export const GET_LATEST_REVIEWS_AND_LOCATIONS: TypedDocumentNode<
   GetLatestReviewsAndLocationsQuery,
   GetLatestReviewsAndLocationsQueryVariables
 > = gql`
-  query GetLatestReviewsAndLocations {
+  "Shows latest traveler reviews and all locations to explore."
+  query GetLatestReviewsAndLocations @tool {
     locations {
       id
       name
