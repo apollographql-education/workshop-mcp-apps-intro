@@ -1,26 +1,21 @@
 import App from './App';
 import { StrictMode, Suspense } from 'react';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { HttpLink } from '@apollo/client/link/http';
-import { ApolloProvider } from '@apollo/client/react';
+import { InMemoryCache } from '@apollo/client';
+import { ApolloClient } from '@apollo/client-ai-apps';
+import { ApolloProvider } from '@apollo/client-ai-apps/react';
 import { createRoot } from 'react-dom/client';
+import manifest from '../.application-manifest.json';
 import { fragments } from './apollo/fragmentRegistry.js';
 import theme from './theme.js';
 import { ChakraProvider, Spinner, Center } from '@chakra-ui/react';
-
-const graphqlUri =
-  import.meta.env.VITE_GRAPHQL_ENDPOINT ??
-  'https://flyby-edu-router.up.railway.app/';
-
-const httpLink = new HttpLink({ uri: graphqlUri });
 
 const cache = new InMemoryCache({
   fragments
 });
 
 const client = new ApolloClient({
-  link: httpLink,
   cache,
+  manifest,
   dataMasking: true
 });
 
