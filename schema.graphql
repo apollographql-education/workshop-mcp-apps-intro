@@ -1,0 +1,62 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+type Location {
+  id: ID!
+  "The name of the location"
+  name: String!
+  "A short description about the location"
+  description: String!
+  "The location's main photo as a URL"
+  photo: String!
+  "The calculated overall rating based on all reviews"
+  overallRating: Float
+  "All submitted reviews about this location"
+  reviewsForLocation: [Review]!
+}
+type Mutation {
+  submitReview(locationReview: LocationReviewInput!): SubmitReviewResponse
+}
+type Query {
+  "The full list of locations presented by the Interplanetary Space Tourism department"
+  locations: [Location!]!
+  "The details of a specific location"
+  location(id: ID!): Location
+  "The three latest reviews submitted for FlyBy's locations"
+  latestReviews: [Review!]!
+}
+type Review {
+  id: ID!
+  "Written text"
+  comment: String
+  "A number from 1 - 5 with 1 being lowest and 5 being highest"
+  rating: Int
+  "The location the review is about"
+  location: Location
+}
+type SubmitReviewResponse {
+  "Similar to HTTP status code, represents the status of the mutation"
+  code: Int!
+  "Indicates whether the mutation was successful"
+  success: Boolean!
+  "Human-readable message for the UI"
+  message: String!
+  "Newly created review"
+  locationReview: Review
+}
+input LocationReviewInput {
+  "Written text"
+  comment: String!
+  "A number from 1 - 5 with 1 being lowest and 5 being highest"
+  rating: Int!
+  "Location Id"
+  locationId: String!
+}
+"Exposes a URL that specifies the behavior of this scalar."
+directive @specifiedBy(
+    "The URL that specifies the behavior of this scalar."
+    url: String!
+  ) on SCALAR
+directive @defer(label: String, if: Boolean! = true) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+

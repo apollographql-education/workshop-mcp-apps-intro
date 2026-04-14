@@ -1,0 +1,52 @@
+{
+  "name": "flyby",
+  "description": "Location reviews demo (Flyby GraphQL) for Apollo workshops.",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@apollo/client": "^4.1.6",
+    "@apollo/space-kit": "^9.3.1",
+    "@chakra-ui/react": "^3.34.0",
+    "@emotion/react": "^11.14.0",
+    "@graphql-tools/graphql-tag-pluck": "^8.3.23",
+    "framer-motion": "^4.1.17",
+    "graphql": "^16.12.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-icons": "^4.3.1",
+    "react-rating-stars-component": "^2.2.0",
+    "react-router-dom": "^6.30.3",
+    "rxjs": "^7.8.2",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^6.2.1",
+    "@graphql-codegen/typescript": "^5.0.9",
+    "@graphql-codegen/typescript-operations": "^5.0.9",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^23.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.7",
+    "vitest": "^4.0.15"
+  },
+  "overrides": {
+    "posthog-node": "5.21.0",
+    "@remote-dom/react": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  }
+}
