@@ -24,7 +24,8 @@ export const GET_LOCATION_DETAILS: TypedDocumentNode<
   GetLocationDetailsQuery,
   GetLocationDetailsQueryVariables
 > = gql`
-  query GetLocationDetails($locationId: ID!) {
+  "Shows details and reviews for a space travel location."
+  query GetLocationDetails($locationId: ID!) @tool {
     location(id: $locationId) {
       id
       name
