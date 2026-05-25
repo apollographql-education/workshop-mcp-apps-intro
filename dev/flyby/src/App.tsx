@@ -11,6 +11,12 @@ export default function App() {
     switch (toolInfo?.toolName) {
       case "GetLatestReviewsAndLocations":
         return "/";
+      case "GetLocationDetails":
+        return `/location/${toolInfo.toolInput.locationId}`;
+      case "SubmitReview": {
+        const id = toolInfo.toolInput.locationReview.locationId;
+        return id ? `/location/${id}` : "/";
+      }
       default: {
         // @ts-expect-error Fallthrough case for `toolInfo` which should be
         // `never`. If expect-error is reported as unused, it means there is a

@@ -14,7 +14,8 @@ export const SUBMIT_REVIEW: TypedDocumentNode<
   SubmitReviewMutation,
   SubmitReviewMutationVariables
 > = gql`
-  mutation SubmitReview($locationReview: LocationReviewInput!) {
+  "Submits a new review with a rating and comment for a location."
+  mutation SubmitReview($locationReview: LocationReviewInput!) @tool {
     submitReview(locationReview: $locationReview) {
       code
       success
