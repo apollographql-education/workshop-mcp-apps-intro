@@ -37,7 +37,7 @@ export default function ReviewRating({
       a11y
       count={5}
       edit={edit}
-      value={rating}
+      value={rating ?? 0}
       onChange={setReviewsInput}
       {...starConfig}
     />
