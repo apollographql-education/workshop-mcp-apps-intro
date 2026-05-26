@@ -21,7 +21,7 @@ export default function App() {
         // @ts-expect-error Fallthrough case for `toolInfo` which should be
         // `never`. If expect-error is reported as unused, it means there is a
         // missing case above.
-        console.warn(`Unable to match route for tool '${toolInfo?.toolName}`);
+        console.warn(`Unable to match route for tool '${toolInfo?.toolName}'`);
         return "/";
       }
     }
