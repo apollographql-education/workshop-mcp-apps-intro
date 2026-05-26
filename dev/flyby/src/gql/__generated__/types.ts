@@ -164,3 +164,35 @@ export type GetLocationDetailsQuery = {
     } | null>;
   } | null;
 };
+
+export type GetLocationReviewsQueryVariables = Exact<{
+  locationId: Scalars['ID']['input'];
+}>;
+
+export type GetLocationReviewsQuery = {
+  location: {
+    __typename: 'Location';
+    id: string;
+    name: string;
+    overallRating: number | null;
+    reviewsForLocation: Array<{
+      __typename: 'Review';
+      id: string;
+      comment: string | null;
+      rating: number | null;
+    } | null>;
+  } | null;
+};
+
+export type GetLocationsToVisitQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetLocationsToVisitQuery = {
+  locations: Array<{
+    __typename: 'Location';
+    id: string;
+    name: string;
+    description: string;
+    overallRating: number | null;
+    reviewsForLocation: Array<{ __typename: 'Review'; id: string } | null>;
+  }>;
+};

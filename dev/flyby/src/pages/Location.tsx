@@ -57,64 +57,63 @@ export default function Location() {
     reviewsForLocation = [],
     overallRating
   } = data?.location ?? {};
+  const reviews = reviewsForLocation.filter((review) => review != null);
 
   return (
     <>
       {data && (
-        <Stack direction="column" px="12" gap="6" mb="12">
-          <Heading size="3xl">{name}</Heading>
-          <HStack>
-            <ReviewRating isHalf size={16} rating={overallRating || 0} />{' '}
-            <div>({reviewsForLocation.length})</div>
-          </HStack>
-          <Stack direction="column" gap="6">
-            <Image
-              src={photo}
-              alt={name}
-              objectFit="cover"
-              width="100%"
-              height="500px"
-            />
-            <Flex direction="column" justify="space-between">
-              <Heading py="4" size="xl" mb="2">
-                About this location
-              </Heading>
-              <Text mr="1">{description}</Text>
-            </Flex>
+        <Stack direction="column" px="8" gap="8" mb="12">
+          <Stack direction="column" gap="3">
+            <Heading size="3xl">{name}</Heading>
+            <HStack>
+              <ReviewRating isHalf size={16} rating={overallRating || 0} />
+              <Text>
+                {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}
+              </Text>
+            </HStack>
           </Stack>
+
+          <Stack direction="column" gap="3">
+            <Heading size="xl">About this location</Heading>
+            <Text fontSize="lg">{description}</Text>
+          </Stack>
+
           <Flex direction="row">
-            <Stack flex="1" direction="column" gap="12">
+            <Stack flex="1" direction="column" gap="8">
               <Stack
                 direction="column"
-                gap="4"
+                gap="2"
                 separator={<StackSeparator borderColor="gray.200" />}
               >
-                <Heading size="xl" mb="2" marginTop={8}>
-                  What other space travelers have to say
-                </Heading>
-                {reviewsForLocation.length === 0 ? (
+                <Heading size="xl">Traveler reviews</Heading>
+                {reviews.length === 0 ? (
                   <Text>No reviews yet</Text>
                 ) : (
-                  reviewsForLocation.map((review, i) => {
-                    if (review == null) {
-                      return null;
-                    }
-
-                    return (
-                      <Stack
-                        direction="column"
-                        gap="1"
-                        key={`${i}-${review.rating}`}
-                        py="8"
-                      >
-                        <ReviewRating size={16} rating={review.rating} />
-                        <Text py="2">{review.comment}</Text>
-                      </Stack>
-                    );
-                  })
+                  reviews.map((review) => (
+                    <Stack direction="column" gap="1" key={review.id} py="4">
+                      <ReviewRating size={16} rating={review.rating} />
+                      <Text>{review.comment}</Text>
+                    </Stack>
+                  ))
                 )}
               </Stack>
-              <SubmitReview locationId={id} />
+
+              <Stack direction="column" gap="4">
+                <Heading size="xl">Add your review</Heading>
+                <SubmitReview locationId={id} />
+              </Stack>
+
+              <Stack direction="column" gap="3">
+                <Heading size="xl">Destination photo</Heading>
+                <Image
+                  src={photo}
+                  alt={name}
+                  borderRadius="image"
+                  objectFit="cover"
+                  width="100%"
+                  height="240px"
+                />
+              </Stack>
             </Stack>
           </Flex>
         </Stack>
